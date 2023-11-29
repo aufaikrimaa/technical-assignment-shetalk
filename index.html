@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <style>
+        .bg-inf, .btn-info {
+            background: #43D7C2; color: #fff; border: 0;
+        }
+        .text-info {
+            color: #43D7C2;
+        }
+        body {
+            background: #fbfbfb;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="assets/images/SheTalk.png" alt="SheTalk"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#diskusiBaru"
+                    class="btn btn-info text-white mb-4">
+                    Mulai Diskusi Baru
+                </button>
+                <div class="links mb-4">
+                    <a href="" class="d-block text-decoration-none text-body mb-3"><i
+                            class="me-2 bi bi-speedometer2"></i> Beranda</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3"><i
+                            class="me-2 bi bi-patch-question"></i> Jawab Pertanyaan</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3"><i class="me-2 bi bi-sticky"></i>
+                        Informasi</a>
+                </div>
+                <div class="topics mb-4">
+                    <h3 class="mb-3 fs-6">Topics</h3>
+                    <ul class="nav flex-column" id="topicList">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Menstruation</a>
+                        </li>  -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <div class="dropdown">
+                        <button class="btn bg-white dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Terbaru
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item text-decoration-none text-body" href="#">Terbaru</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-decoration-none text-body" href="#">Another action</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-decoration-none text-body" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="diskusiBaru" tabindex="-1" aria-labelledby="diskusiBaruLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header dropdown">
+                        <a class="dropdown-toggle text-decoration-none text-body" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-globe me-1"></i> Setiap orang
+                        </a>
+                        <div class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-info text-white">Posting</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
