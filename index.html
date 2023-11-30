@@ -18,13 +18,32 @@
         body {
             background: #fbfbfb;
         }
+
+        nav {
+            background-color: #ffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav img {
+            height: 2rem;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        #link a:hover {
+            color: #43D7C2 !important;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-white mb-5">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/images/SheTalk.png" alt="SheTalk"></a>
+            <a class="navbar-brand" href="#"><img src="assets/images/SheTalk.svg" alt="SheTalk"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,7 +65,7 @@
                     class="btn btn-info text-white mb-4">
                     Mulai Diskusi Baru
                 </button>
-                <div class="links mb-4">
+                <div class="links mb-4" id="link">
                     <a href="" class="d-block text-decoration-none text-body mb-3"><i
                             class="me-2 bi bi-speedometer2"></i> Beranda</a>
                     <a href="" class="d-block text-decoration-none text-body mb-3"><i
