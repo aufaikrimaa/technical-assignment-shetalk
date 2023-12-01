@@ -1,21 +1,36 @@
-let topics = ['Menstruation', 'HIV/AIDS', 'Teenage pregnancy', 'Sexual orientation'];
+//ini buat side-menu to masing-masing halamannya
+document.getElementById('link').addEventListener('click', function (event) {
 
-function displayTopics() {
-    const topicList = document.getElementById('topicList');
-    topicList.innerHTML = '';
+    if (event.target.tagName === 'A') {
+        event.preventDefault();
 
-    topics.forEach(topic => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<li class="nav-item">
-            <a class="nav-link" href="#">${topic}</a>
-        </li>`;
-        topicList.appendChild(listItem);
-    });
-}
+        const links = document.querySelectorAll('.links a');
+        links.forEach(link => link.classList.remove('active'));
 
-displayTopics();
+        event.target.classList.add('active');
 
+        // document.querySelectorAll('.postCard').style.display = 'none';
+        document.getElementById('postCard').style.display = 'none';
+        // document.getElementById('askCard').style.display = 'none';
 
+        switch (event.target.dataset.halaman) {
+            case 'beranda':
+                // document.querySelectorAll('.postCard').style.display = 'block';
+                document.getElementById('postCard').style.display = 'block';
+                document.getElementById('askCard').style.display = 'block';
+                break;
+            case 'jawab-pertanyaan':
+                // document.getElementById('askCard').style.display = 'block';
+                break;
+            case 'informasi':
+                // document.querySelectorAll('.postCard').style.display = 'block';
+                document.getElementById('postCard').style.display = 'block';
+                break;
+            default:
+                console.log('Halaman tidak ditemukan.');
+        }
+    }
+});
 
 //ini buat side-menu to masing-masing halamannya
 document.getElementById('link').addEventListener('click', function (event) {
@@ -27,24 +42,26 @@ document.getElementById('link').addEventListener('click', function (event) {
 
         event.target.classList.add('active');
 
-        document.getElementById('profile-ahli').style.display = 'none';
+        // document.getElementById('profile-ahli').style.display = 'none';
         document.getElementById('postCard').style.display = 'none';
-        document.getElementById('askCard').style.display = 'none';
-        document.getElementById('filter-content').style.display = 'none'; 
+        // document.querySelectorAll('.postCard').style.display = 'none';
+        // document.getElementById('askCard').style.display = 'none';
+        // document.getElementById('filter-content').style.display = 'none';
 
         switch (event.target.dataset.halaman) {
             case 'beranda':
+                // document.querySelectorAll('.postCard').style.display = 'block';
                 document.getElementById('postCard').style.display = 'block';
                 document.getElementById('askCard').style.display = 'block';
                 document.getElementById('filter-content').style.display = 'block';
                 break;
             case 'jawab-pertanyaan':
-                document.getElementById('askCard').style.display = 'block';
-                document.getElementById('filter-content').style.display = 'block'; 
+                // document.getElementById('askCard').style.display = 'block';
+                // document.getElementById('filter-content').style.display = 'block';
                 break;
             case 'informasi':
                 document.getElementById('postCard').style.display = 'block';
-                document.getElementById('filter-content').style.display = 'block'; 
+                // document.getElementById('filter-content').style.display = 'block';
                 break;
             case 'profile':
                 document.getElementById('profile-ahli').style.display = 'block';
@@ -60,22 +77,22 @@ document.getElementById('link').addEventListener('click', function (event) {
 function showTab(tabId) {
     // Hide all tabs
     let tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(function(tab) {
-      tab.classList.remove('active');
+    tabs.forEach(function (tab) {
+        tab.classList.remove('active');
     });
 
     // Show the selected tab
     let selectedTab = document.getElementById(tabId);
     if (selectedTab) {
-      selectedTab.classList.add('active');
-      updateActiveTabStyle(tabId);
+        selectedTab.classList.add('active');
+        updateActiveTabStyle(tabId);
     }
-  }
+}
 
 function updateActiveTabStyle(tabId) {
     // Remove 'active' class from all tabs
     let allTabs = document.querySelectorAll('.tab');
-    allTabs.forEach(function(tab) {
+    allTabs.forEach(function (tab) {
         tab.classList.remove('active');
     });
 
@@ -104,7 +121,6 @@ function toggleReplyForm() {
 function postReply() {
     let replyForm = document.getElementById('replyForm');
     replyForm.style.display = 'none';
-    // Add logic to handle the posted reply, e.g., updating the UI or sending data to a server.
 }
 
 //for button reply
@@ -124,6 +140,4 @@ function toggleReplyForm(index) {
 function postReply(index) {
     let replyForm = replyForms[index];
     replyForm.style.display = 'none';
-    // Add logic to handle the posted reply, e.g., updating the UI or sending data to a server.
 }
-

@@ -1,5 +1,5 @@
-.bg-inf, .btn-info {
-    background: #43D7C2; color: #fff; border: 0;
+.bg-info, .btn-info {
+    background: #43D7C2 !important; color: #fff !important; border: 0; 
 }
 
 .text-info {
@@ -7,11 +7,7 @@
 }
 
 body {
-    background: #fbfbfb;
-}
-
-.btn-info {
-    background-color: #43D7C2 !important;
+    background: #fbfbfb !important;
 }
 
 .btn-info:hover {
@@ -41,11 +37,101 @@ nav img {
     color: #43D7C2 !important;
 }
 
-#postCard,
+#topicList li {
+    color: #43D7C2;
+    list-style-type: disc;
+}
+
+.post-card {
+    border: 1px solid #fff;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 8px;
+    background-color: #fff ;
+}
+
+.post-card:hover {
+    background-color: rgb(238, 238, 238); cursor: pointer;
+}
+
+.post-card .profile-info {
+    margin: 1rem;
+    display: flex;
+}
+
+.post-card .profile-info img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+}
+
+.profile-name {
+    color: #43D7C2;
+    font-weight: bold;
+    margin: 0.5rem 0 0 0;
+}
+
+.post-time {
+    color: #888888;
+}
+
+.post-content {
+    margin: 1rem 1rem 2rem 1rem;
+}
+
+.post-title {
+    color: #43D7C2;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.reply-icon {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    color: #888888;
+    cursor: pointer;
+    gap: 1rem;
+}
+
+.reply-form {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1rem 0 1rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.reply-form img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+}
+
+.reply-form input {
+    width: calc(100% - 20px); /* Lebar input sedikit lebih kecil dari container */
+    border: none;
+    border-bottom: 1px solid #ccc; 
+    outline: none; 
+}
+
+.reply-form .send {
+    float: right; 
+    color:#888888;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    outline: none; 
+}
+
+/* #postCard,
 #askCard,
 #filter-content{
     display: none;
-}
+} */
 
 .profile-header {
     background-image: url('../assets/images/header-background.svg');
@@ -135,90 +221,6 @@ nav img {
     border: none;
     background-color: #ccc;
     margin: 0;
-}
-
-.post-card {
-    border: 1px solid #fff;
-    padding: 1rem 1rem 0 1rem;
-    border-radius: 8px;
-    background-color: #fff ;
-}
-
-.post-card:hover {
-    background-color: rgb(238, 238, 238) ;
-}
-
-.post-card .profile-info {
-    margin: 1rem;
-    display: flex;
-}
-
-.post-card .profile-info img {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    margin-right: 1.5rem;
-}
-
-.profile-name {
-    color: #43D7C2;
-    font-weight: bold;
-    margin: 0.5rem 0 0 0;
-}
-
-.post-time {
-    color: #888888;
-}
-
-.post-content {
-    margin: 1rem 1rem 2rem 1rem;
-}
-
-.post-title {
-    color: #43D7C2;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.reply-icon {
-    display: flex;
-    align-items: center;
-    margin: 1rem;
-    color: #888888;
-    cursor: pointer;
-    gap: 1rem;
-}
-
-.reply-form {
-    display: flex;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    padding: 1rem 1rem 0 1rem;
-    width: 100%;
-    border: none;
-}
-
-.reply-form img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    margin-right: 1.5rem;
-}
-
-.reply-form input {
-    width: calc(100% - 20px); /* Lebar textarea sedikit lebih kecil dari container */
-    border: none;
-    border-bottom: 1px solid #ccc; 
-    outline: none; 
-}
-
-.reply-form .send {
-    float: right; 
-    color:#888888;
-    font-size: 1.5rem;
-    border: none;
-    cursor: pointer;
-    outline: none; 
 }
 
 .reply-card {
