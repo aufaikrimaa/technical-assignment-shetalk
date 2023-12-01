@@ -37,9 +37,18 @@ nav img {
     color: #43D7C2 !important;
 }
 
+.links a.active {
+    color: #43D7C2 !important;
+}
+
+#postCard,
+#askCard,
+#filter-content{
+    display: none;
+}
+
 .profile-header {
-    background-image: url('../assets/images/header-background.svg'); /* Replace with your header background image */
-    background-size: cover;
+    background-image: url('../assets/images/header-background.svg');
     background-position: center;
     height: 10rem;
 }
@@ -47,7 +56,7 @@ nav img {
 .profile-avatar {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Memberikan bentuk bulat pada gambar profil */
+    border-radius: 50%; 
     object-fit: cover;
     border: 4px solid #fbfbfb;
     position: relative;
@@ -124,7 +133,7 @@ nav img {
 .tab-divider {
     height: 2px;
     border: none;
-    background-color: #ccc; /* Warna garis samar */
+    background-color: #ccc;
     margin: 0;
 }
 
@@ -199,8 +208,8 @@ nav img {
 .reply-form input {
     width: calc(100% - 20px); /* Lebar textarea sedikit lebih kecil dari container */
     border: none;
-    border-bottom: 1px solid #ccc; /* Garis bawah */
-    outline: none; /* Menghilangkan border fokus saat diklik */
+    border-bottom: 1px solid #ccc; 
+    outline: none; 
 }
 
 .reply-form .send {
@@ -209,7 +218,7 @@ nav img {
     font-size: 1.5rem;
     border: none;
     cursor: pointer;
-    outline: none; /* Menghilangkan border fokus saat diklik */
+    outline: none; 
 }
 
 .reply-card {

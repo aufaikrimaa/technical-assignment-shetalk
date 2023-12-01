@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="../assets/images/SheTalk.svg" alt="SheTalk"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link disabled">Disabled</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#diskusiBaru"
+                    class="btn btn-info text-white mb-4">
+                    Kirim Informasi
+                </button>
+                <div class="links mb-4" id="link">
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="beranda"><i
+                        class="me-2 bi bi-speedometer2"></i> Beranda</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="jawab-pertanyaan"><i
+                            class="me-2 bi bi-patch-question"></i> Jawab Pertanyaan</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="informasi"><i 
+                        class="me-2 bi bi-sticky"></i>Informasi</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3 active" data-halaman="profile"><i 
+                        class="me-2 bi bi-person"></i>Profile</a>
+                </div>
+                <div class="topics mb-4">
+                    <h3 class="mb-3 fs-6">Topics</h3>
+                    <ul class="nav flex-column" id="topicList">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Menstruation</a>
+                        </li>  -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-9">
+                <!-- Konten postingan dan pertanyaan for mrnu beranda jawab pertanyaan dan informasi-->
+                <div id="content">
+                    <div id="filter-content">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
+                            <div class="dropdown">
+                                <button class="btn bg-white dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Terbaru
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item text-decoration-none text-body" href="#">Terbaru</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-decoration-none text-body" href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-decoration-none text-body" href="#">Something else here</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="postCard">
+                        <div class="post-card">
+                            <div class="profile-info">
+                                <img src="../assets/images/profile.png" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Dr Boyke</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-title">Haid tidak lancar setelah melahirkan, normal atau tidak? </div>
+                                <p class="post-text">Tidak perlu khawatir, menstruasi tidak lancar setelah melahirkan adalah kondisi normal. Bila ibu memberikan ASI eksklusif selama 6 bulan, umumnya menstruasi akan tidak teratur karena hormon prolaktin berpengaruh pada siklus menstruasi.</p>
+                            </div>
+                            <div class="reply-icon" onclick="toggleReplyForm(0)"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                        </div>
+                        <div class="reply-form" style="display: none;">
+                            <img src="../assets/images/profile.png" alt="Profile Picture">
+                            <input placeholder="Tulis balasan..."></input>
+                            <div class="send bi bi-send-fill" onclick="postReply(0)"></div>
+                        </div>
+                    </div>
+                    <div id="askCard">
+                        <div class="post-card">
+                            <div class="profile-info">
+                                <img src="../assets/images/kurakura.jpg" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Kura-kura</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-title">Apa benar tidak boleh minum es saat haid? </div>
+                                <p class="post-text">Aku pernah ditegur saat minum es, disitu aku keadaan sedang menstruasi, katanya dapat membekukan pembuluh darah dan membuat haid tidak lancar bla bla bla.</p>                          
+                            </div>
+                            <div class="reply-icon" onclick="toggleReplyForm(1)"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                        </div>
+                        <div class="reply-form" style="display: none;">
+                            <img src="../assets/images/profile.png" alt="Profile Picture">
+                            <input placeholder="Tulis balasan..."></input>
+                            <div class="send bi bi-send-fill" onclick="postReply(1)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile ahli -->
+                <div id="profile-ahli">
+                    <div class="profile-header">
+                        <div class="row">
+                            <div class="col">
+                                <img class="profile-avatar" src="../assets/images/profile.png" alt="Profile Avatar">
+                            </div>
+                            <div class="col">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <div class="dropdown">
+                                        <button class="btn bg-white dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            More
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item text-decoration-none text-body" href="#">Edit profile</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-decoration-none text-body" href="#">Keluar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="profile-info">
+                        <h1>Dr Boyke</h1>
+                        <p>@wishdrboyke</p>
+                        <p id="bio">H. Boyke Dian Nugraha, SpOG MARS (Lahir di Bandung 14 Desember 1956) adalah Dokter Kesehatan Remaja, Keluarga & Seksolog Indonesia</p>
+                    </div>
+                    
+                    <ul class="tabs">
+                        <li class="tab active" onclick="showTab('tab1')" data-tab="tab1">Postingan</li>
+                        <li class="tab" onclick="showTab('tab2')" data-tab="tab2">Balasan</li>
+                    </ul>
+                    <hr class="tab-divider" id="active-tab-line">
+                    <div id="tab1" class="tab-content active">
+                        <div class="post-card" id="postCardProfile">
+                            <div class="profile-info">
+                                <img src="../assets/images/profile.png" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Dr Boyke</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-title">Haid tidak lancar setelah melahirkan, normal atau tidak? </div>
+                                <p class="post-text">Tidak perlu khawatir, menstruasi tidak lancar setelah melahirkan adalah kondisi normal. Bila ibu memberikan ASI eksklusif selama 6 bulan, umumnya menstruasi akan tidak teratur karena hormon prolaktin berpengaruh pada siklus menstruasi.</p>
+                            </div>
+                            <div class="reply-icon" onclick="toggleReplyForm()"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                        </div>
+                        <div class="reply-form" id="replyForm" style="display: none;">
+                            <img src="../assets/images/profile.png" alt="Profile Picture">
+                            <input placeholder="Tulis balasan..."></input>
+                            <div class="send bi bi-send-fill" onclick="postReply()"></div>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab-content">
+                        <div class="reply-card">
+                            <div class="profile-info">
+                                <img src="../assets/images/kurakura.jpg" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Kura-kura</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content" id="post-reply">
+                                <div class="post-title">Apa benar tidak boleh minum es saat haid? </div>
+                                <p class="post-text">Aku pernah ditegur saat minum es, disitu aku keadaan sedang menstruasi, katanya dapat membekukan pembuluh darah dan membuat haid tidak lancar bla bla bla.</p>                          
+                            </div>
+                            <div class="profile-info">
+                                <img src="../assets/images/profile.png" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Dr Boyke</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content" id="reply-post">
+                                <!-- <div class="post-title">Haid tidak lancar setelah melahirkan, normal atau tidak? </div> -->
+                                <p class="post-text">Tidak benar! perdarahan menstruasi tidak dipengaruhi oleh suhu air yang diminum. Sebab ketika air masuk ke dalam tubuh, suhunya akan berubah menyesuaikan dengan suhu tubuh.
+                                    Adapun lancar atau tidaknya darah haid dipengaruhi oleh kondisi hormonal wanita, yaitu hormon estrogen dan progesteron.                                
+                                    Jika hormon tersebut terganggu, misalnya karena stres dan penggunaan kontrasepsi, haid biasanya menjadi tidak lancar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="diskusiBaru" tabindex="-1" aria-labelledby="diskusiBaruLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header dropdown">
+                        <a class="dropdown-toggle text-decoration-none text-body" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-globe me-1"></i> Setiap orang
+                        </a>
+                        <div class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-info text-white">Posting</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
