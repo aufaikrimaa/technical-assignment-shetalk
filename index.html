@@ -37,6 +37,94 @@
         #link a:hover {
             color: #43D7C2 !important;
         }
+
+        .links a.active {
+            color: #43D7C2 !important;
+        }
+
+        .post-card {
+            border: 1px solid #fff;
+            padding: 1rem 1rem 0 1rem;
+            border-radius: 8px;
+            background-color: #fff ;
+        }
+
+        .post-card:hover {
+            background-color: rgb(238, 238, 238) ;
+        }
+
+        .post-card .profile-info {
+            margin: 1rem;
+            display: flex;
+        }
+
+        .post-card .profile-info img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+        }
+
+        .profile-name {
+            color: #43D7C2;
+            font-weight: bold;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .post-time {
+            color: #888888;
+        }
+
+        .post-content {
+            margin: 1rem 1rem 2rem 1rem;
+        }
+
+        .post-title {
+            color: #43D7C2;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .reply-icon {
+            display: flex;
+            align-items: center;
+            margin: 1rem;
+            color: #888888;
+            cursor: pointer;
+            gap: 1rem;
+        }
+
+        .reply-form {
+            display: flex;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            padding: 1rem 1rem 0 1rem;
+            width: 100%;
+            border: none;
+        }
+
+        .reply-form img {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+        }
+
+        .reply-form input {
+            width: calc(100% - 20px); /* Lebar input sedikit lebih kecil dari container */
+            border: none;
+            border-bottom: 1px solid #ccc; 
+            outline: none; 
+        }
+
+        .reply-form .send {
+            float: right; 
+            color:#888888;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            outline: none; 
+        }
     </style>
 </head>
 
@@ -66,12 +154,12 @@
                     Mulai Diskusi Baru
                 </button>
                 <div class="links mb-4" id="link">
-                    <a href="" class="d-block text-decoration-none text-body mb-3"><i
+                    <a href="" class="d-block text-decoration-none text-body mb-3 active" data-halaman="beranda"><i
                             class="me-2 bi bi-speedometer2"></i> Beranda</a>
-                    <a href="" class="d-block text-decoration-none text-body mb-3"><i
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="jawab-pertanyaan"><i
                             class="me-2 bi bi-patch-question"></i> Jawab Pertanyaan</a>
-                    <a href="" class="d-block text-decoration-none text-body mb-3"><i class="me-2 bi bi-sticky"></i>
-                        Informasi</a>
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="informasi"><i 
+                        class="me-2 bi bi-sticky"></i>Informasi</a>
                 </div>
                 <div class="topics mb-4">
                     <h3 class="mb-3 fs-6">Topics</h3>
@@ -102,6 +190,53 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Konten postingan dan pertanyaan -->
+                <div id="konten">
+                    <div id="postCard">
+                        <div class="post-card">
+                            <div class="profile-info">
+                                <img src="../assets/images/profile.png" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Dr Boyke</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-title">Haid tidak lancar setelah melahirkan, normal atau tidak? </div>
+                                <p class="post-text">Tidak perlu khawatir, menstruasi tidak lancar setelah melahirkan adalah kondisi normal. Bila ibu memberikan ASI eksklusif selama 6 bulan, umumnya menstruasi akan tidak teratur karena hormon prolaktin berpengaruh pada siklus menstruasi.</p>
+                            </div>
+                            <div class="reply-icon" onclick="toggleReplyForm(0)"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                        </div>
+                        <div class="reply-form" style="display: none;">
+                            <img src="../assets/images/profile.png" alt="Profile Picture">
+                            <input placeholder="Tulis balasan..."></input>
+                            <div class="send bi bi-send-fill" onclick="postReply(0)"></div>
+                        </div>
+                    </div>
+                    <div id="askCard">
+                        <div class="post-card">
+                            <div class="profile-info">
+                                <img src="./assets/images/kurakura.jpg" alt="Profile Picture">
+                                <div>
+                                    <h5 class="profile-name">Kura-kura</h5>
+                                    <p class="post-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-title">Apa benar tidak boleh minum es saat haid? </div>
+                                <p class="post-text">Aku pernah ditegur saat minum es, disitu aku keadaan sedang menstruasi, katanya dapat membekukan pembuluh darah dan membuat haid tidak lancar bla bla bla.</p>                          
+                            </div>
+                            <div class="reply-icon" onclick="toggleReplyForm(1)"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                        </div>
+                        <div class="reply-form" style="display: none;">
+                            <img src="../assets/images/profile.png" alt="Profile Picture">
+                            <input placeholder="Tulis balasan..."></input>
+                            <div class="send bi bi-send-fill" onclick="postReply(1)"></div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
