@@ -29,7 +29,7 @@ nav img {
     margin-right: 10px;
 }
 
-#link a:hover {
+.links a:hover {
     color: #43D7C2 !important;
 }
 
@@ -127,14 +127,8 @@ nav img {
     outline: none; 
 }
 
-/* #postCard,
-#askCard,
-#filter-content{
-    display: none;
-} */
-
 .profile-header {
-    background-image: url('../assets/images/header-background.svg');
+    background-image: url('./assets/images/header-background.svg');
     background-position: center;
     height: 10rem;
 }

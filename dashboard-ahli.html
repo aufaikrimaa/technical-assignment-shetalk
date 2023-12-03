@@ -36,13 +36,15 @@
                     class="btn btn-info text-white mb-4">
                     Mulai Diskusi Baru
                 </button>
-                <div class="links mb-4" id="link">
-                    <a href="" class="d-block text-decoration-none text-body mb-3 active" data-halaman="beranda"><i
+                <div class="links mb-4" id="link-ahli">
+                    <a href="" class="d-block text-decoration-none text-body mb-3 active" data-halaman="beranda" onclick="showMenu('beranda')" data-tab="beranda"><i
                             class="me-2 bi bi-speedometer2"></i> Beranda</a>
-                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="jawab-pertanyaan"><i
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="jawab-pertanyaan" onclick="showMenu('jawab-pertanyaan')" data-tab="jawab-pertanyaan"><i
                             class="me-2 bi bi-patch-question"></i> Jawab Pertanyaan</a>
-                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="informasi"><i
+                    <a href="" class="d-block text-decoration-none text-body mb-3" data-halaman="informasi" onclick="showMenu('informasi')" data-tab="informasi"><i
                             class="me-2 bi bi-sticky"></i>Informasi</a>
+                    <a href="#profile-ahli" class="d-block text-decoration-none text-body mb-3" data-halaman="profile" onclick="showMenu('profile-ahli')" data-tab="profile-ahli"><i 
+                            class="me-2 bi bi-person"></i>Profile</a>
                 </div>
                 <div class="topics mb-4">
                     <h3 class="mb-3 fs-6">Topics</h3>
@@ -51,31 +53,14 @@
                 </div>
             </div>
             <div class="col-sm-9 col-12">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                    <div class="dropdown">
-                        <button class="btn bg-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Terbaru
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item text-decoration-none text-body" href="#">Terbaru</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-decoration-none text-body" href="#">Another action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-decoration-none text-body" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Konten postingan dan pertanyaan -->
                 <div id="listKonten">
                     <div id="postCard">
                     </div>
+                    <div id="profile-ahli" class="content-section" style="display: none;"></div>
                 </div>
+                
             </div>
         </div>
     </div>

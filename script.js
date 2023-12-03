@@ -143,29 +143,32 @@ function tambahDiskusi(event) {
     } else {
         console.log('Isi semua field untuk menambahkan diskusi baru.');
     }
-
-
 }
 
 // Menangani submit form dengan memanggil fungsi tambahDiskusi
 document.getElementById('buatDiskusiBaru').addEventListener('submit', tambahDiskusi);
 
 //ini buat link side menu nya
-document.getElementById('link').addEventListener('click', function (event) {
-    if (event.target.tagName === 'A') {
-        event.preventDefault();
-
-        const links = document.querySelectorAll('.links a');
-        links.forEach(link => link.classList.remove('active'));
-
-        event.target.classList.add('active');
-
-        selectedCategory = event.target.dataset.halaman;
-
-        displayDiskusi();
-    }
-});
-
+document.addEventListener('DOMContentLoaded', function () {
+    const linkContainers = document.querySelectorAll('.links');
+  
+    linkContainers.forEach(linkContainer => {
+      linkContainer.addEventListener('click', function (event) {
+        if (event.target.tagName === 'A') {
+          event.preventDefault();
+  
+          const links = linkContainer.querySelectorAll('a');
+          links.forEach(link => link.classList.remove('active'));
+  
+          event.target.classList.add('active');
+  
+          selectedCategory = event.target.dataset.halaman;
+  
+          displayDiskusi();
+        }
+      });
+    });
+  });
 
 function filterKategori(konten) {
     return (
@@ -227,3 +230,100 @@ function displayDiskusi() {
 }
 
 window.onload = displayDiskusi();
+
+
+
+//for dashboard-ahli yang udah login, data akun dan function login ada di auth.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Cek apakah pengguna sudah terautentikasi
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+    if (isAuthenticated) {
+        showAhliContent();
+    } else {
+        console.log('Pengguna belum terautentikasi');
+    }
+
+    
+});
+
+function showAhliContent() {
+    // Dapatkan data profile dari sesi lokal
+    const profileData = JSON.parse(localStorage.getItem('profileData'));
+    console.log('Menampilkan konten ahli...');
+
+    renderProfile(profileData);
+}
+
+function renderProfile(profile) {
+    const dashboardContainer = document.getElementById('profile-ahli');
+    let kontenHtml = '';
+
+        kontenHtml += `
+        <!-- Struktur HTML sesuai dengan kebutuhan profil -->
+        <div class="profile-header bg-info rounded-top">
+            <div class="row">
+                <div class="col">
+                    <img class="profile-avatar" src="../assets/images/profile.png" alt="Profile Avatar">
+                </div>
+                <div class="col">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <div class="dropdown">
+                            <button class="btn bg-white dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                More
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item text-decoration-none text-body" href="#">Edit profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-decoration-none text-body" href="#">Keluar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-info">
+            <h1>${profile.nama}</h1>
+            <p>@wishdrboyke</p>
+            <p id="bio">${profile.bio}</p>
+        </div>
+
+        <ul class="tabs">
+            <li class="tab active" onclick="showTab('tab1')" data-tab="tab1">Postingan</li>
+            <li class="tab" onclick="showTab('tab2')" data-tab="tab2">Balasan</li>
+        </ul>
+        
+        <hr class="tab-divider" id="active-tab-line">
+    `;
+
+    dashboardContainer.innerHTML = kontenHtml;
+}
+
+//untuk side menu profile di dashboard ahli
+function showMenu(menuId) {
+    const allContentSections = document.querySelectorAll('.content-section');
+    const allLinks = document.querySelectorAll('.links a');
+
+    allContentSections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    allLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    const selectedContent = document.getElementById(menuId);
+    if (selectedContent) {
+        selectedContent.style.display = 'block';
+    }
+
+    const selectedLink = document.querySelector(`.links a[data-tab="${menuId}"]`);
+    if (selectedLink) {
+        selectedLink.classList.add('active');
+    }
+}
