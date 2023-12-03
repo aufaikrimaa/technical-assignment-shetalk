@@ -1,4 +1,4 @@
-let topics = ['Menstruation', 'HIV/AIDS', 'Teenage pregnancy', 'Sexual orientation'];
+let topics = ['Menstruasi', 'HIV/AIDS', 'Kehamilan Remaja', 'Orientasi Seksual'];
 let selectedCategory = 'beranda';
 let selectedTopic = '';
 
@@ -9,7 +9,7 @@ function displayTopik() {
     topics.forEach(topic => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `<li class="nav-item">
-            <a class="nav-link text-decoration-none text-body" href="#" data-topic="${topic}">${topic}</a>
+            <a class="nav-link text-decoration-none text-body" href="#" data-topic="${topic}" data-halaman="${topic}">${topic}</a>
         </li>`;
         topicList.appendChild(listItem);
     });
@@ -73,17 +73,19 @@ let semuaKonten = [{
         avatar: 'anjing.jpeg',
         nama: 'Anjing',
         judul: 'Apa benar tidak boleh minum es saat haid?',
-        topik: 'Menstruation',
+        topik: 'Menstruasi',
         desk: 'Aku pernah ditegur saat minum es, disitu aku keadaan sedang menstruasi, katanya dapat membekukan pembuluh darah dan membuat haid tidak lancar bla bla bla.',
         kategori: 'pertanyaan',
+        createdAt: '01/12/2023, 21:25:00'
     },
     {
-        avatar: 'anjing.jpeg',
-        nama: 'Anjing',
+        avatar: 'monyet.png',
+        nama: 'Monyet',
         judul: 'Haid tidak lancar setelah melahirkan, normal atau tidak?',
         desk: 'Tidak perlu khawatir, menstruasi tidak lancar setelah melahirkan adalah kondisi normal. Bila ibu memberikan ASI eksklusif selama 6 bulan, umumnya menstruasi akan tidak teratur karena hormon prolaktin berpengaruh pada siklus menstruasi.',
-        topik: 'Menstruation',
+        topik: 'Menstruasi',
         kategori: 'informasi',
+        createdAt: '02/12/2023, 21:25:00'
     },
     {
         avatar: 'profile.png',
@@ -92,19 +94,31 @@ let semuaKonten = [{
         desk: 'HIV adalah virus yang menyerang sistem kekebalan tubuh manusia, mengganggu kemampuannya untuk melawan infeksi dan penyakit. Jika tidak diobati, HIV dapat berkembang menjadi AIDS.',
         topik: 'HIV/AIDS',
         kategori: 'informasi',
+        createdAt: '03/12/2023, 21:25:00'
     },
 ];
 
 function tambahDiskusi(event) {
     event.preventDefault();
+
+    // close modal
+    var diskusiModal = document.getElementById('diskusiBaru');
+    var modal = bootstrap.Modal.getInstance(diskusiModal);
+    modal.hide();
+
     let judul = document.getElementById('judul').value;
     let topik = document.getElementById('inputTopics').value;
     let desk = document.getElementById('desk').value;
+    let createdAt = `${new Date().toLocaleDateString('en-GB', {
+        day : 'numeric',
+        month : 'short',
+        year : 'numeric'
+    }).split(' ').join(' ')}, ${new Date().toLocaleTimeString()}` ;
 
     const radioButtons = document.getElementsByName('animal');
     let selectedAvatar = '';
     let selectedNamaAVatar = '';
-    
+
     radioButtons.forEach((radio) => {
         if (radio.checked) {
             selectedNamaAVatar = avatars[radio.value].nama;
@@ -113,27 +127,29 @@ function tambahDiskusi(event) {
     });
 
     // Pastiin kedua field diisi sebelum menambahkan data
-    if (!desk) {
+    if (judul && !desk) {
         diskusi = {
             judul: judul,
             topik: topik,
             kategori: 'pertanyaan', //default kategori untuk general user itu semuanya cuma bisa posting pertanyaan
             avatar: selectedAvatar,
             nama: selectedNamaAVatar,
+            createdAt: createdAt
         };
 
         semuaKonten.unshift(diskusi);
         console.log('Data diskusi telah ditambahkan:', diskusi);
         displayDiskusi();
 
-    } else if (judul && desk) {
+    } else if (judul && desk && topik && selectedAvatar && selectedNamaAVatar) {
         diskusi = {
             judul: judul,
             topik: topik,
             desk: desk,
-            kategori: 'pertanyaan', //default kategori untuk general user itu semuanya cuma bisa posting pertanyaan
+            kategori: 'informasi', //default kategori untuk general user itu semuanya cuma bisa posting pertanyaan
             avatar: selectedAvatar,
             nama: selectedNamaAVatar,
+            createdAt: createdAt
         };
 
         semuaKonten.unshift(diskusi);
@@ -151,50 +167,53 @@ document.getElementById('buatDiskusiBaru').addEventListener('submit', tambahDisk
 //ini buat link side menu nya
 document.addEventListener('DOMContentLoaded', function () {
     const linkContainers = document.querySelectorAll('.links');
-  
+
     linkContainers.forEach(linkContainer => {
-      linkContainer.addEventListener('click', function (event) {
-        if (event.target.tagName === 'A') {
-          event.preventDefault();
-  
-          const links = linkContainer.querySelectorAll('a');
-          links.forEach(link => link.classList.remove('active'));
-  
-          event.target.classList.add('active');
-  
-          selectedCategory = event.target.dataset.halaman;
-  
-          displayDiskusi();
-        }
-      });
+        linkContainer.addEventListener('click', function (event) {
+            if (event.target.tagName === 'A') {
+                event.preventDefault();
+
+                const links = linkContainer.querySelectorAll('a');
+                links.forEach(link => link.classList.remove('active'));
+
+                event.target.classList.add('active');
+
+                selectedCategory = event.target.dataset.halaman;
+
+                displayDiskusi();
+            }
+        });
     });
-  });
+});
 
 function filterKategori(konten) {
     return (
         (selectedCategory === 'beranda') ||
         (selectedCategory === 'jawab-pertanyaan' && konten.kategori === 'pertanyaan') ||
-        (selectedCategory === 'informasi' && konten.kategori === 'informasi')
+        (selectedCategory === 'informasi' && konten.kategori === 'informasi') ||
+        (selectedCategory === 'Menstruasi' && konten.topik === 'Menstruasi') ||
+        (selectedCategory === 'Orientasi Seksual' && konten.topik === 'Orientasi Seksual') ||
+        (selectedCategory === 'Kehamilan Remaja' && konten.topik === 'Kehamilan Remaja') ||
+        (selectedCategory === 'HIV/AIDS' && konten.topik === 'HIV/AIDS')
     );
 }
 
 // function filterTopik(konten) {
 //     return (
 //     (selectedTopic === '') ||
-//     (selectedTopic === 'Menstruation' && konten.topik === 'Menstruation') ||
+//     (selectedTopic === 'Menstruasi' && konten.topik === 'Menstruasi') ||
 //     (selectedTopic === 'HIV/AIDS' && konten.topik === 'HIV/AIDS') ||
-//     (selectedTopic === 'Teenage pregnancy' && konten.topik === 'Teenage pregnancy') ||
-//     (selectedTopic === 'Sexual orientation' && konten.topik === 'Sexual orientation'));
+//     (selectedTopic === 'Kehamilan Remaja' && konten.topik === 'Kehamilan Remaja') ||
+//     (selectedTopic === 'Orientasi Seksual' && konten.topik === 'Orientasi Seksual'));
 // }
 
 function displayDiskusi() {
     let listKonten = document.getElementById('postCard');
     let diskusiHMTL = '';
 
+    // Filter berdasarkan kategori/topik yang dipilih
     const filteredKonten = semuaKonten.filter(konten => {
-        // Filter berdasarkan kategori yang dipilih
-        return filterKategori(konten) //&& filterTopik(konten)
-        ;
+        return filterKategori(konten);
     });
 
     listKonten.innerHTML = '';
@@ -206,13 +225,13 @@ function displayDiskusi() {
                     <img src="assets/images/${konten.avatar}" alt="Profile Picture">
                     <div>
                         <h5 class="profile-name">${konten.nama}</h5>
-                        <p class="post-time">1 hour ago</p>
+                        <p class="post-time">${konten.createdAt}</p>
                     </div>
                 </div>
                 <div class="post-content mb-3">
                     <div class="post-title">${konten.judul}</div>
                     <p class="post-text">
-                        <span class="badge bg-info me-2">${konten.topik}</span>
+                        <span class="badge bg-info me-2">${konten.topik != 'Setiap orang' ? konten.topik : ``}</span>
                         ${konten.desk ? konten.desk : ``}
                     </p>
                 </div>
@@ -231,8 +250,6 @@ function displayDiskusi() {
 
 window.onload = displayDiskusi();
 
-
-
 //for dashboard-ahli yang udah login, data akun dan function login ada di auth.js
 document.addEventListener('DOMContentLoaded', function () {
     // Cek apakah pengguna sudah terautentikasi
@@ -243,8 +260,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.log('Pengguna belum terautentikasi');
     }
-
-    
 });
 
 function showAhliContent() {
@@ -259,12 +274,12 @@ function renderProfile(profile) {
     const dashboardContainer = document.getElementById('profile-ahli');
     let kontenHtml = '';
 
-        kontenHtml += `
+    kontenHtml += `
         <!-- Struktur HTML sesuai dengan kebutuhan profil -->
         <div class="profile-header bg-info rounded-top">
             <div class="row">
                 <div class="col">
-                    <img class="profile-avatar" src="../assets/images/profile.png" alt="Profile Avatar">
+                    <img class="profile-avatar" src="assets/images/profile.png" alt="Profile Avatar">
                 </div>
                 <div class="col">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
