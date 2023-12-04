@@ -1,3 +1,0 @@
-kurang responsive
-pisahin inline css ke file css
-animation
