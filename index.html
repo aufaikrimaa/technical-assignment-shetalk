@@ -78,15 +78,13 @@
             <div class="modal-content">
                 <form id="buatDiskusiBaru">
                     <div class="modal-header dropdown">
-                        <i class="bi bi-globe me-1"></i>
-                        <select class="form-select border-0" id="inputTopics">
-                            <option href="#" selected> Setiap orang</option>
-                        </select>
+                        <h1 class="modal-title fs-5" id="diskusiBaru">Buat Diskusi Baru</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <fieldset id="radioGroup" class="d-flex"></fieldset>
+                            <div class="radio-tile-group" id="radioGroup">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="judul" class="form-label">Judul/Pertanyaan</label>
@@ -97,11 +95,19 @@
                             <input type="text" class="form-control" id="desk">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <input type="submit" class="btn btn-info text-white" value="Posting">
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div class="dropdown d-flex align-items-center">
+                            <i class="bi bi-globe me-1"></i>
+                            <select class="form-select border-0" id="inputTopics">
+                                <option href="#" selected> Setiap orang</option>
+                            </select>
+                        </div>
+                        <div class="btns">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <input type="submit" class="btn btn-info text-white" value="Posting">
+                        </div>
                     </div>
                 </form>
             </div>

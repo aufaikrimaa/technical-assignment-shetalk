@@ -56,17 +56,25 @@ const avatars = [{
 
 const radioGroup = document.getElementById('radioGroup');
 avatars.forEach((avatar, index) => {
+    
+    const radioContainer = document.createElement('div');
+    radioContainer.classList.add('radio-container');
+    
     const radioButton = document.createElement('input');
+    radioButton.classList.add('radio-button');
+    radioButton.id = index;
     radioButton.type = 'radio';
     radioButton.name = 'animal';
     radioButton.value = index; // pakai index sebagai value
+    
+    const radioTile = document.createElement('div');
+    radioTile.classList.add('radio-tile');
+    radioTile.innerHTML = `<img src="assets/images/${avatar.avatar}" alt="${avatar.nama}>
+    <label for="${index}" class="radio-tile-label">${avatar.nama}</label>`;
 
-    const label = document.createElement('label');
-    label.innerHTML = `<img src="assets/images/${avatar.avatar}" alt="${avatar.nama}" width="50" height="50"> ${avatar.nama}`;
-
-    radioGroup.appendChild(radioButton);
-    radioGroup.appendChild(label);
-    radioGroup.appendChild(document.createElement('br'));
+    radioContainer.appendChild(radioButton);
+    radioContainer.appendChild(radioTile);
+    radioGroup.appendChild(radioContainer);
 });
 
 let semuaKonten = [{
@@ -123,6 +131,9 @@ function tambahDiskusi(event) {
         if (radio.checked) {
             selectedNamaAVatar = avatars[radio.value].nama;
             selectedAvatar = avatars[radio.value].avatar;
+
+            // hapus avatar terpilih
+            radio.checked = false;
         }
     });
 
@@ -139,7 +150,11 @@ function tambahDiskusi(event) {
 
         semuaKonten.unshift(diskusi);
         console.log('Data diskusi telah ditambahkan:', diskusi);
+        alert('Data diskusi telah ditambahkan.');
         displayDiskusi();
+
+        // reset form
+        document.getElementById('buatDiskusiBaru').reset();
 
     } else if (judul && desk && topik && selectedAvatar && selectedNamaAVatar) {
         diskusi = {
@@ -155,9 +170,14 @@ function tambahDiskusi(event) {
         semuaKonten.unshift(diskusi);
         console.log('Data diskusi telah ditambahkan:', diskusi);
         displayDiskusi();
+        alert('Data diskusi telah ditambahkan.');
 
+        // reset form
+        document.getElementById('buatDiskusiBaru').reset();
+        
     } else {
         console.log('Isi semua field untuk menambahkan diskusi baru.');
+        alert('Isi semua field untuk menambahkan diskusi baru.');
     }
 }
 
@@ -197,15 +217,6 @@ function filterKategori(konten) {
         (selectedCategory === 'HIV/AIDS' && konten.topik === 'HIV/AIDS')
     );
 }
-
-// function filterTopik(konten) {
-//     return (
-//     (selectedTopic === '') ||
-//     (selectedTopic === 'Menstruasi' && konten.topik === 'Menstruasi') ||
-//     (selectedTopic === 'HIV/AIDS' && konten.topik === 'HIV/AIDS') ||
-//     (selectedTopic === 'Kehamilan Remaja' && konten.topik === 'Kehamilan Remaja') ||
-//     (selectedTopic === 'Orientasi Seksual' && konten.topik === 'Orientasi Seksual'));
-// }
 
 function displayDiskusi() {
     let listKonten = document.getElementById('postCard');
