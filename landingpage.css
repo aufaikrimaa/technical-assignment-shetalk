@@ -4,6 +4,14 @@ body {
     margin: 0;
 }
 
+.bg-info, .btn-info {
+    background: #43D7C2 !important; color: #fff !important; border: 0; 
+}
+
+.btn-danger {
+    background: #ff6565 !important; outline: none; border: none;
+}
+
 .costume-text {
     color: #ff6565;
 }

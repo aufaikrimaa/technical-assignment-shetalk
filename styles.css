@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 .bg-info, .btn-info {
     background: #43D7C2 !important; color: #fff !important; border: 0; 
 }
@@ -6,8 +8,10 @@
     color: #43D7C2;
 }
 
-body {
+body.dashboard {
     background: #fbfbfb !important;
+    padding: 0;
+    margin: 0;
 }
 
 .btn-info:hover {
