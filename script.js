@@ -13,19 +13,6 @@ function displayTopik() {
         </li>`;
         topicList.appendChild(listItem);
     });
-
-    // Tambahkan event listener untuk setiap elemen topik
-    topicList.addEventListener('click', function (event) {
-        if (event.target.tagName === 'A') {
-            event.preventDefault();
-
-            // Simpan topik yang dipilih
-            selectedTopic = event.target.dataset.topic;
-
-            // Update konten berdasarkan topik yang dipilih
-            displayDiskusi();
-        }
-    });
 }
 
 displayTopik();
@@ -82,7 +69,7 @@ let semuaKonten = [{
         nama: 'Anjing',
         judul: 'Apa benar tidak boleh minum es saat haid?',
         topik: 'Menstruasi',
-        desk: 'Aku pernah ditegur saat minum es, disitu aku keadaan sedang menstruasi, katanya dapat membekukan pembuluh darah dan membuat haid tidak lancar bla bla bla.',
+        desk: '',
         kategori: 'pertanyaan',
         createdAt: '01/12/2023, 21:25:00'
     },
@@ -102,6 +89,7 @@ let semuaKonten = [{
         desk: 'HIV adalah virus yang menyerang sistem kekebalan tubuh manusia, mengganggu kemampuannya untuk melawan infeksi dan penyakit. Jika tidak diobati, HIV dapat berkembang menjadi AIDS.',
         topik: 'HIV/AIDS',
         kategori: 'informasi',
+        jenis: 'postAhli',
         createdAt: '03/12/2023, 21:25:00'
     },
 ];
@@ -109,75 +97,130 @@ let semuaKonten = [{
 function tambahDiskusi(event) {
     event.preventDefault();
 
-    // close modal
-    var diskusiModal = document.getElementById('diskusiBaru');
-    var modal = bootstrap.Modal.getInstance(diskusiModal);
-    modal.hide();
+    if (currentPage === 'index') {
+        // close modal
+        let diskusiModal = document.getElementById('diskusiBaru');
+        let modal = bootstrap.Modal.getInstance(diskusiModal);
+        modal.hide();
 
-    let judul = document.getElementById('judul').value;
-    let topik = document.getElementById('inputTopics').value;
-    let desk = document.getElementById('desk').value;
-    let createdAt = `${new Date().toLocaleDateString('en-GB', {
-        day : 'numeric',
-        month : 'short',
-        year : 'numeric'
-    }).split(' ').join(' ')}, ${new Date().toLocaleTimeString()}` ;
+        let judul = document.getElementById('judul').value;
+        let topik = document.getElementById('inputTopics').value;
+        let desk = document.getElementById('desk').value;
+        let createdAt = `${new Date().toLocaleDateString('en-GB', {
+            day : 'numeric',
+            month : 'short',
+            year : 'numeric'
+        }).split(' ').join(' ')}, ${new Date().toLocaleTimeString()}` ;
 
-    const radioButtons = document.getElementsByName('animal');
-    let selectedAvatar = '';
-    let selectedNamaAVatar = '';
+        const radioButtons = document.getElementsByName('animal');
+        let selectedAvatar = '';
+        let selectedNamaAVatar = '';
 
-    radioButtons.forEach((radio) => {
-        if (radio.checked) {
-            selectedNamaAVatar = avatars[radio.value].nama;
-            selectedAvatar = avatars[radio.value].avatar;
+        radioButtons.forEach((radio) => {
+            if (radio.checked) {
+                selectedNamaAVatar = avatars[radio.value].nama;
+                selectedAvatar = avatars[radio.value].avatar;
 
-            // hapus avatar terpilih
-            radio.checked = false;
+                // hapus avatar terpilih
+                radio.checked = false;
+            }
+        });
+
+        // Pastiin kedua field diisi sebelum menambahkan data
+        if (judul && !desk) {
+            diskusi = {
+                judul: judul,
+                topik: topik,
+                kategori: 'pertanyaan', 
+                avatar: selectedAvatar,
+                nama: selectedNamaAVatar,
+                createdAt: createdAt
+            };
+
+            semuaKonten.unshift(diskusi);
+            console.log('Data diskusi telah ditambahkan:', diskusi);
+            alert('Data diskusi telah ditambahkan.');
+            displayDiskusi();
+
+            // reset form
+            document.getElementById('buatDiskusiBaru').reset();
+
+        } else if (judul && desk && topik && selectedAvatar && selectedNamaAVatar) {
+            diskusi = {
+                judul: judul,
+                topik: topik,
+                desk: desk,
+                kategori: 'informasi', 
+                avatar: selectedAvatar,
+                nama: selectedNamaAVatar,
+                createdAt: createdAt
+            };
+
+            semuaKonten.unshift(diskusi);
+            console.log('Data diskusi telah ditambahkan:', diskusi);
+            displayDiskusi();
+            alert('Data diskusi telah ditambahkan.');
+
+            // reset form
+            document.getElementById('buatDiskusiBaru').reset();
+            
+        } else {
+            console.log('Isi semua field untuk menambahkan diskusi baru.');
+            alert('Isi semua field untuk menambahkan diskusi baru.');
         }
-    });
 
-    // Pastiin kedua field diisi sebelum menambahkan data
-    if (judul && !desk) {
-        diskusi = {
-            judul: judul,
-            topik: topik,
-            kategori: 'pertanyaan', //default kategori untuk general user itu semuanya cuma bisa posting pertanyaan
-            avatar: selectedAvatar,
-            nama: selectedNamaAVatar,
-            createdAt: createdAt
-        };
+    } else if (currentPage === 'dashboard-ahli') {
 
-        semuaKonten.unshift(diskusi);
-        console.log('Data diskusi telah ditambahkan:', diskusi);
-        alert('Data diskusi telah ditambahkan.');
-        displayDiskusi();
+        let diskusiModal = document.getElementById('diskusiBaru');
+        let modal = bootstrap.Modal.getInstance(diskusiModal);
+        modal.hide();
 
-        // reset form
-        document.getElementById('buatDiskusiBaru').reset();
+        let judul = document.getElementById('judul').value;
+        let topik = document.getElementById('inputTopics').value;
+        let desk = document.getElementById('desk').value;
+        let createdAt = `${new Date().toLocaleDateString('en-GB', {
+            day : 'numeric',
+            month : 'short',
+            year : 'numeric'
+        }).split(' ').join(' ')}, ${new Date().toLocaleTimeString()}` ;
 
-    } else if (judul && desk && topik && selectedAvatar && selectedNamaAVatar) {
-        diskusi = {
-            judul: judul,
-            topik: topik,
-            desk: desk,
-            kategori: 'informasi', //default kategori untuk general user itu semuanya cuma bisa posting pertanyaan
-            avatar: selectedAvatar,
-            nama: selectedNamaAVatar,
-            createdAt: createdAt
-        };
-
-        semuaKonten.unshift(diskusi);
-        console.log('Data diskusi telah ditambahkan:', diskusi);
-        displayDiskusi();
-        alert('Data diskusi telah ditambahkan.');
-
-        // reset form
-        document.getElementById('buatDiskusiBaru').reset();
+        const isAuthenticated = localStorage.getItem('isAuthenticated');
         
+        if (isAuthenticated) {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+            if (judul && desk && topik) {
+                diskusi = {
+                    judul: judul,
+                    topik: topik,
+                    desk: desk,
+                    kategori: 'informasi', 
+                    jenis: 'postAhli',
+                    avatar: profileData.photo,
+                    nama: profileData.nama,
+                    createdAt: createdAt
+                };
+
+                semuaKonten.unshift(diskusi);
+                console.log('Data diskusi telah ditambahkan:', diskusi);
+                alert('Data diskusi telah ditambahkan.');
+                displayDiskusi();
+
+                // reset form
+                document.getElementById('buatDiskusiBaru').reset();
+
+            } else {
+                console.log('Isi semua field untuk menambahkan informasi baru.');
+                alert('Isi semua field untuk menambahkan informasi baru.');
+            }
+
+        } else {
+            window.location.href = 'login.html';
+            alert('silahkan login terlebih dahulu!');
+        }
+
     } else {
-        console.log('Isi semua field untuk menambahkan diskusi baru.');
-        alert('Isi semua field untuk menambahkan diskusi baru.');
+        console.log('Halaman tidak dikenali.');
     }
 }
 
@@ -186,37 +229,20 @@ document.getElementById('buatDiskusiBaru').addEventListener('submit', tambahDisk
 
 //ini buat link side menu nya
 document.addEventListener('DOMContentLoaded', function () {
-    const linkContainers = document.querySelectorAll('.links');
-
-    linkContainers.forEach(linkContainer => {
-        linkContainer.addEventListener('click', function (event) {
+    const linkSidebars = document.querySelectorAll('.links');
+    linkSidebars.forEach(linkSidebar => {
+        linkSidebar.addEventListener('click', function (event) {
             if (event.target.tagName === 'A') {
                 event.preventDefault();
-
-                const links = linkContainer.querySelectorAll('a');
+                const links = linkSidebar.querySelectorAll('a');
                 links.forEach(link => link.classList.remove('active'));
-
                 event.target.classList.add('active');
-
                 selectedCategory = event.target.dataset.halaman;
-
                 displayDiskusi();
             }
         });
     });
 });
-
-function filterKategori(konten) {
-    return (
-        (selectedCategory === 'beranda') ||
-        (selectedCategory === 'jawab-pertanyaan' && konten.kategori === 'pertanyaan') ||
-        (selectedCategory === 'informasi' && konten.kategori === 'informasi') ||
-        (selectedCategory === 'Menstruasi' && konten.topik === 'Menstruasi') ||
-        (selectedCategory === 'Orientasi Seksual' && konten.topik === 'Orientasi Seksual') ||
-        (selectedCategory === 'Kehamilan Remaja' && konten.topik === 'Kehamilan Remaja') ||
-        (selectedCategory === 'HIV/AIDS' && konten.topik === 'HIV/AIDS')
-    );
-}
 
 function displayDiskusi() {
     let listKonten = document.getElementById('postCard');
@@ -224,7 +250,15 @@ function displayDiskusi() {
 
     // Filter berdasarkan kategori/topik yang dipilih
     const filteredKonten = semuaKonten.filter(konten => {
-        return filterKategori(konten);
+        return (
+            (selectedCategory === 'beranda') ||
+            (selectedCategory === 'jawab-pertanyaan' && konten.kategori === 'pertanyaan') ||
+            (selectedCategory === 'informasi' && konten.kategori === 'informasi') ||
+            (selectedCategory === 'Menstruasi' && konten.topik === 'Menstruasi') ||
+            (selectedCategory === 'Orientasi Seksual' && konten.topik === 'Orientasi Seksual') ||
+            (selectedCategory === 'Kehamilan Remaja' && konten.topik === 'Kehamilan Remaja') ||
+            (selectedCategory === 'HIV/AIDS' && konten.topik === 'HIV/AIDS')
+        );
     });
 
     listKonten.innerHTML = '';
@@ -260,96 +294,3 @@ function displayDiskusi() {
 }
 
 window.onload = displayDiskusi();
-
-//for dashboard-ahli yang udah login, data akun dan function login ada di auth.js
-document.addEventListener('DOMContentLoaded', function () {
-    // Cek apakah pengguna sudah terautentikasi
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-
-    if (isAuthenticated) {
-        showAhliContent();
-    } else {
-        console.log('Pengguna belum terautentikasi');
-    }
-});
-
-function showAhliContent() {
-    // Dapatkan data profile dari sesi lokal
-    const profileData = JSON.parse(localStorage.getItem('profileData'));
-    console.log('Menampilkan konten ahli...');
-
-    renderProfile(profileData);
-}
-
-function renderProfile(profile) {
-    const dashboardContainer = document.getElementById('profile-ahli');
-    let kontenHtml = '';
-
-    kontenHtml += `
-        <!-- Struktur HTML sesuai dengan kebutuhan profil -->
-        <div class="profile-header bg-info rounded-top">
-            <div class="row">
-                <div class="col">
-                    <img class="profile-avatar" src="assets/images/profile.png" alt="Profile Avatar">
-                </div>
-                <div class="col">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="dropdown">
-                            <button class="btn bg-white dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                More
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item text-decoration-none text-body" href="#">Edit profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-decoration-none text-body" href="#">Keluar</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="profile-info">
-            <h1>${profile.nama}</h1>
-            <p>@wishdrboyke</p>
-            <p id="bio">${profile.bio}</p>
-        </div>
-
-        <ul class="tabs">
-            <li class="tab active" onclick="showTab('tab1')" data-tab="tab1">Postingan</li>
-            <li class="tab" onclick="showTab('tab2')" data-tab="tab2">Balasan</li>
-        </ul>
-        
-        <hr class="tab-divider" id="active-tab-line">
-    `;
-
-    dashboardContainer.innerHTML = kontenHtml;
-}
-
-//untuk side menu profile di dashboard ahli
-function showMenu(menuId) {
-    const allContentSections = document.querySelectorAll('.content-section');
-    const allLinks = document.querySelectorAll('.links a');
-
-    allContentSections.forEach(section => {
-        section.style.display = 'none';
-    });
-
-    allLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-
-    const selectedContent = document.getElementById(menuId);
-    if (selectedContent) {
-        selectedContent.style.display = 'block';
-    }
-
-    const selectedLink = document.querySelector(`.links a[data-tab="${menuId}"]`);
-    if (selectedLink) {
-        selectedLink.classList.add('active');
-    }
-}

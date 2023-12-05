@@ -26,7 +26,7 @@
             <div class="col-sm-3 col-12">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#diskusiBaru"
                     class="btn btn-info text-white mb-4">
-                    Mulai Diskusi Baru
+                    Kirim Informasi
                 </button>
                 <div class="links mb-4" id="link-ahli">
                     <a href="" class="d-block text-decoration-none text-body mb-3 active" data-halaman="beranda" onclick="showMenu('beranda')" data-tab="beranda"><i
@@ -40,7 +40,7 @@
                 </div>
                 <div class="topics mb-4">
                     <h3 class="mb-3 fs-6">Topics</h3>
-                    <ul class="nav flex-column ms-4 links" id="topicList">
+                     <ul class="nav flex-column ms-4 links" id="topicList" onclick="showMenu('')" data-tab=""> <!--ini jgn diganti lagi yaa, soalnya klo g pake function ini nnti di topiknya, profile nya keikut -->
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,8 @@
                 <div id="listKonten">
                     <div id="postCard">
                     </div>
-                    <div id="profile-ahli" class="content-section" style="display: none;"></div>
+                    <div id="profile-ahli" class="content-section" style="display: none;">
+                    </div>
                 </div>
                 
             </div>
@@ -63,20 +64,20 @@
             <div class="modal-content">
                 <form id="buatDiskusiBaru">
                     <div class="modal-header dropdown">
-                        <h1 class="modal-title fs-5">Buat Diskusi Baru</h1>
+                        <h1 class="modal-title fs-5">Buat Informasi Baru</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <div class="radio-tile-group" id="radioGroup">
+                            <div class="radio-tile-group" id="radioGroup"  style="display: none;">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="judul" class="form-label">Judul/Pertanyaan</label>
+                            <label for="judul" class="form-label">Judul</label>
                             <input type="text" class="form-control" id="judul">
                         </div>
                         <div class="mb-3">
-                            <label for="desk" class="form-label">Desk</label>
+                            <label for="desk" class="form-label">Deskripsi</label>
                             <input type="text" class="form-control" id="desk">
                         </div>
                     </div>
@@ -84,7 +85,7 @@
                         <div class="dropdown d-flex align-items-center">
                             <i class="bi bi-globe me-1"></i>
                             <select class="form-select border-0" id="inputTopics">
-                                <option href="#" selected> Setiap orang</option>
+                                <option href="#" selected> Semua</option>
                             </select>
                         </div>
                         <div class="btns">
@@ -99,8 +100,11 @@
         </div>
     </div>
 
-
+    <script src="dashboardAhli-function.js"></script>
     <script src="script.js"></script>
+    <script>
+        let currentPage = 'dashboard-ahli';
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
