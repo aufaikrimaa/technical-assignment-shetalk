@@ -1,251 +1,165 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- link font from google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <!-- end -->
-   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <script defer src="app.js"></script>
-    <!-- defer mean js is executed after HTML in body -->
-        <!-- css -->
-  
-  <style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shetalk</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- link font from google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!-- end -->
 
-
-    body{
-        font-family: 'Inter', sans-serif;
-       
-    }
-    
-    .costume-text{
-        color: #FF6565;
-    }
-    
-    
-    .costume-container{
-        background-color: #43D7C2;
-        height: 100vh;
-        width: 100%;
-    }
-    
-    
-    /* start card */
-    .card-container{
-        margin-top: 20%;
-    }
-    
-    .line{
-       border-bottom:5px solid #43D7C2 ; 
-       width: 80px;  
-       display: inline-block; 
-       margin-top: 12px;
-    }
-    
-    .costume-btn{
-      background-color: #FF6565;
-    }
-    
-    .costume-p{
-        color: #888888;  
-    }
-    
-    /* end */
-    .costume-p-text{
-        color: #888888;
-        margin-top: 120px;
-        
-    
-    }
-    
-    
-    
-    .costume-bot-bg{
-    
-        background-color: #43D7C2; 
-       
-        height: 200px; margin-bottom: 5%;
-    }
-    
-    .costume-img{
-        max-width: 95%;
-    }
-      </style>
-    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script defer src="app.js"></script>
 </head>
+
 <body>
-
-    <!-- navbar -->
-
-<nav class="navbar">
+  <!-- navbar -->
+  <nav class="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="assets/SheTalk.svg" alt="Logo" width="auto" height="24" class="d-inline-block align-text-top px-lg-4">
       </a>
-        
     </div>
   </nav>
   <!-- end navbar -->
-  
-<!-- start section 1 -->
 
-
-<div class="container-fluid bg-info costume-container " >
-    <img src="assets/sticker01.svg" alt="" class="position-absolute img-fluid costume-img" >
+  <!-- start section 1 -->
+  <div class="container-fluid bg-info costume-container ">
+    <img src="assets/sticker01.svg" alt="" class="position-absolute img-fluid costume-img">
     <div class="container ">
       <div class="row ">
         <div class="col-12 text-center mt-5 ">
           <h1 class="costume-text fw-bold hiddenY">Selamat datang di SheTalk!</h1>
         </div>
       </div>
-  
       <div class="row">
-        <div class="col-12 text-center text-white fw-semibold "><p>Platform yang didedikasikan untuk menyediakan ruang aman <br> dan terpercaya bagi perempuan untuk diskusi seputar <br> <span class="costume-text">  kesehatan reproduksi dan seksual  </span></p></div>
-      </div>
-  
-  
-      <div class="container  ">
-  
-        <div class="row position-relative  mt-5" >
-          
-          <div class="col-lg-9 mx-auto col-sm-4 costume-img-header"  > 
-  
-           <img src="assets/shetalk-db.png" alt="shetalk dashbord"  class="rounded-4 img-fluid shadow p-2 hiddenX"   >
-          </div>
-         <!-- untuk svg -->
+        <div class="col-12 text-center text-white fw-semibold ">
+          <p>Platform yang didedikasikan untuk menyediakan ruang aman <br> dan terpercaya bagi perempuan untuk diskusi
+            seputar <br> <span class="costume-text"> kesehatan reproduksi dan seksual </span></p>
         </div>
-      
-       
-  
-  
-  
       </div>
-      
+      <div class="container">
+        <div class="row position-relative  mt-5">
+          <div class="col-lg-9 mx-auto col-sm-4 costume-img-header">
+            <img src="assets/shetalk-db.png" alt="shetalk dashbord" class="rounded-4 img-fluid shadow p-2 hiddenX">
+          </div>
+          <!-- untuk svg -->
+        </div>
+      </div>
     </div>
   </div>
-  
-  
   <!-- end section 1 -->
 
 
   <!-- start card -->
-<div class="container-fluid w-100 ">
-
-  <div class="container text-center card-container">
-    <div class="row">
-      <div class="col-12  my-5  text-center">
-        <h2 class="costume-text fw-bold ">Mengapa SheTalk?</h2>
-       <p class="line" ></p>
+  <div class="container-fluid w-100 ">
+    <div class="container text-center card-container">
+      <div class="row">
+        <div class="col-12 my-5 text-center">
+          <h2 class="costume-text fw-bold ">Mengapa SheTalk?</h2>
+          <p class="line"></p>
+        </div>
       </div>
-    </div>
-    <div class="row d-flex justify-content-center gap-4 cards ">
-      <div class="col-lg-3 mt-lg-4  square hiddenX">
-        <div class=" card mx-auto h-100 w-100 ">
-          <div class=" card-body pt-4 ">
-            <h5 class="costume-text  fs-6 fw-bold mb-4">Anonim dan Aman</h5>
-            <p class="card-text costume-p">Privasimu adalah prioritas kami. Berdiskusi tanpa perlu khawatir tentang identitas terungkap.</p>
-        
+      <div class="row d-flex justify-content-center gap-4 cards ">
+        <div class="col-lg-3 mt-lg-4 square hiddenX">
+          <div class=" card mx-auto h-100 w-100 ">
+            <div class=" card-body pt-4 ">
+              <h5 class="costume-text  fs-6 fw-bold mb-4">Anonim dan Aman</h5>
+              <p class="card-text costume-p">Privasimu adalah prioritas kami. Berdiskusi tanpa perlu khawatir tentang
+                identitas terungkap.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 mt-lg-4 square hiddenX">
+          <div class=" card mx-auto h-100 w-100 ">
+            <div class=" card-body pt-4">
+              <p class=" costume-text  fs-6 fw-bold   ">Diskusi Terbuka dan Beragam</p>
+              <p class="card-text costume-p">Temukan solusi, bagikan pengalaman, dan berdialog secara positif untuk
+                membangun pengetahuan.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 mt-lg-4 square hiddenX">
+          <div class=" card mx-auto h-100 w-100">
+            <div class=" card-body pt-4">
+              <p class="costume-text  fs-6 fw-bold">Simpan Diskusi</p>
+              <p class="card-text costume-p">Memudahkan untuk mengakses informasi yang Anda butuhkan kapan pun
+                diperlukan.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 mt-lg-4 square hiddenX">
-        <div class=" card mx-auto h-100 w-100 " >
-          <div class=" card-body pt-4">
-            <p class=" costume-text  fs-6 fw-bold   ">Diskusi Terbuka dan Beragam</p>
-            <p class="card-text costume-p">Temukan solusi, bagikan pengalaman, dan berdialog secara positif untuk membangun pengetahuan.</p>
-        
+    </div>
+  </div>
+  <!-- end card -->
+
+  <!-- start section 2 -->
+  <div class="container-fluid mt-5 mb-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-6 mt-5">
+          <img src="assets/People-ava.svg" alt="avatar-profile" class="img-fluid">
+        </div>
+        <div class="col-lg-6 text-center">
+          <p class="fs-5 costume-p-text text-end">
+            Jadilah bagian dari SheTalk dan mulailah perjalanan kamu menuju pemahaman yang lebih baik tentang kesehatan
+            reproduksi dan seksual.
+            <br><br>
+            Bergabunglah sekarang untuk mendiskusikan, belajar, dan berbagi pengalaman. Mari kita jaga kesehatan
+            reproduksi dan seksual kita bersama-sama!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end section 2 -->
+
+  <!-- start section 3 -->
+  <div class="container-fluid">
+    <div class="container">
+      <div class="costume-bot-bg d-flex justify-content-center align-items-center position-relative rounded-4">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center w-100 px-2 px-lg-5 ">
+          <h1 class="text-white mb-5 mb-lg-0 fs-4">Nyaman di Ruang Aman</h1>
+          <div class="text-center text-sm-left">
+            <a href="https://" class="text-decoration-none">
+              <button type="button"
+                class="btn text-white me-lg-5 btn-lg btn-danger position-relative z-3">Gabung</button>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-3 mt-lg-4 square hiddenX">
-        <div class=" card mx-auto h-100 w-100" >
-          <div class=" card-body pt-4">
-            <p class="costume-text  fs-6 fw-bold" >Simpan Diskusi</p>
-            <p class="card-text costume-p">Memudahkan untuk mengakses informasi yang Anda butuhkan kapan pun diperlukan.</p>
-        
-          </div>
+          <img src="assets/Group 108.svg" alt="" class="position-absolute z-1 costume-img">
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end card -->
+  <!-- end section 3 -->
 
-<!-- start section 2 -->
-<div class="container-fluid mt-5 mb-5">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-6 mt-5">
-        <img src="assets/People-ava.svg" alt="avatar-profile" class="img-fluid">
-      </div>
-      <div class="col-lg-6 text-center">
-        <p class="fs-5 costume-p-text text-end">
-          Jadilah bagian dari SheTalk dan mulailah perjalanan kamu menuju pemahaman yang lebih baik tentang kesehatan reproduksi dan seksual.
-          <br><br>
-          Bergabunglah sekarang untuk mendiskusikan, belajar, dan berbagi pengalaman. Mari kita jaga kesehatan reproduksi dan seksual kita bersama-sama!
-        </p>
-      </div>
+
+  <!-- footer -->
+  <footer class="mt-5 container-fluid text-center">
+    <div class=" d-lg-flex justify-content-lg-between mx-auto">
+      <img src="assets/SheTalk.svg" alt="Logo" width="auto" height="24"
+        class="d-inline-block align-text-top px-lg-4 mb-3">
+      <p class="costume-p mb-3">shetalksinfo@gmail.com</p>
+      <div class="mb-3">
+        <a href="tautan-email" class="text-decoration-none">
+          <img src="assets/fluent_mail-28-filled.svg" alt="email" srcset="">
+        </a>
+        <a href="tautan-instagram" class="text-decoration-none">
+          <img src="assets/ri_instagram-fill.svg" alt="instagram" srcset="">
+        </a>
+      <div>
     </div>
-  </div>
-</div>
+  </footer>
+  <!-- end -->
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  </script>
+</body>
 
-  </div>
-</div>
-
-<!-- end section 2 -->
-
-
-<!-- start section 3 -->
-<div class="container-fluid">
-  <div class="container">
-    <div class="costume-bot-bg d-flex justify-content-center align-items-center position-relative rounded-4">
-      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center w-100 px-2 px-lg-5 ">
-        <h1 class="text-white mb-5 mb-lg-0 fs-4">Temukan Ruang Aman</h1>
-        <div class="text-center text-sm-left"> 
-          <a href="https://" class="text-decoration-none">
-            <button type="button" class="btn text-white me-lg-5 btn-lg btn-danger position-relative z-3">Gabung</button>
-          </a>
-        </div>
-        <img src="assets/Group 108.svg" alt="" class="position-absolute z-1 costume-img">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- end section 3 -->
-
-
-<!-- footer -->
-
-<footer class="mt-5  text-center mb-3">
-  <div class=" d-lg-flex justify-content-lg-between mx-auto  ">
-    <img src="assets/SheTalk.svg" alt="Logo" width="auto" height="24" class="d-inline-block align-text-top px-lg-4">
-    <p class="costume-p">shetalksinfo@gmail.com</p>
-
-    <div>
-      <a href="tautan-email">
-        <img src="assets/fluent_mail-28-filled.svg" alt="email" srcset="">
-    </a>
-    
-    <a href="tautan-instagram">
-        <img src="assets/ri_instagram-fill.svg" alt="instagram" srcset="">
-    </a>
-    
-<div>
-    </div>
-    </div>
-</footer>
-
-<!-- end -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
 </html>
