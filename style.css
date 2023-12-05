@@ -1,0 +1,39 @@
+body{
+  
+    padding: 0;
+    margin: 0;
+ 
+}
+
+
+
+.hiddenX{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+.hiddenY{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(-100%);
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+/* card animate */
+
+.square:nth-child(2){
+    transition-delay: 200ms;
+}
+.square:nth-child(3){
+    transition-delay: 400ms;
+}
+.square:nth-child(4){
+    transition-delay: 600ms;
+}
