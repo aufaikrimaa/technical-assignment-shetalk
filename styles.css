@@ -256,6 +256,10 @@ nav img {
     margin: 0;
 }
 
+.dropdown .btn {
+    color: #888888;
+}
+
 #bio {
     margin: 1rem 0 0 0;
 }

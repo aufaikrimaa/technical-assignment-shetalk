@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
         showAhliContent();
     } else {
         console.log('Pengguna belum terautentikasi');
+        alert('Anda belum login. Silakan login terlebih dahulu.');
+        window.location.href = 'login.html';
     }
 });
 
@@ -36,10 +38,10 @@ function renderProfile(profile) {
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item text-decoration-none text-body" href="#">Edit profile</a>
+                                    <a class="dropdown-item text-decoration-none text-body" href="#" data-bs-toggle="modal" data-bs-target="#editProfileModal" onclick="showEditProfileModal()">Edit profile</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-decoration-none text-body" href="#">Keluar</a>
+                                    <a class="dropdown-item text-decoration-none text-body" href="#" onclick="logout()">Keluar</a>
                                 </li>
                             </ul>
                         </div>
@@ -89,6 +91,33 @@ function renderProfile(profile) {
                     <p class="post-text">Tidak benar! perdarahan menstruasi tidak dipengaruhi oleh suhu air yang diminum. Sebab ketika air masuk ke dalam tubuh, suhunya akan berubah menyesuaikan dengan suhu tubuh.
                         Adapun lancar atau tidaknya darah haid dipengaruhi oleh kondisi hormonal wanita, yaitu hormon estrogen dan progesteron.                                
                         Jika hormon tersebut terganggu, misalnya karena stres dan penggunaan kontrasepsi, haid biasanya menjadi tidak lancar.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit Profile -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form Edit Profile -->
+                        <form id="editProfileForm">
+                            <div class="mb-3">
+                                <label for="editNama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="editNama">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editBio" class="form-label">Bio</label>
+                                <textarea class="form-control" id="editBio" rows="3"></textarea>
+                            </div>
+                            <!-- Tambahan form lainnya sesuai kebutuhan -->
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,21 +225,61 @@ function showMenu(menuId) {
     }
 }
 
-//for button reply
-// let replyForms = document.getElementsByClassName('reply-form');
+function logout() {
+    // Hapus data sesi lokal
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('profileData');
 
-// function toggleReplyForm(index) {
-//     let replyForm = replyForms[index];
-//     let replyFormStyle = window.getComputedStyle(replyForm);
+    window.location.href = 'login.html'; 
+}
 
-//     if (replyFormStyle.display === 'none') {
-//         replyForm.style.display = 'flex';
-//     } else {
-//         replyForm.style.display = 'none';
-//     }
-// }
+// Fungsi untuk menampilkan modal edit profile
+function showEditProfileModal() {
+    const editProfileForm = document.getElementById('editProfileForm');
+    const editNamaInput = document.getElementById('editNama');
+    const editBioInput = document.getElementById('editBio');
 
-// function postReply(index) {
-//     let replyForm = replyForms[index];
-//     replyForm.style.display = 'none';
-// }
+    const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+    if (profileData) {
+        editNamaInput.value = profileData.nama;
+        editBioInput.value = profileData.bio;
+
+        const editProfileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+        editProfileModal.show();
+    } else {
+        console.log('Data profil tidak ditemukan');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const editProfileForm = document.getElementById('editProfileForm');
+    editProfileForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const editedNama = document.getElementById('editNama').value;
+        const editedBio = document.getElementById('editBio').value;
+
+        // Perbarui data di localStorage
+        updateProfileData(editedNama, editedBio);
+
+        // Sembunyikan modal
+        let editProfileModal = document.getElementById('editProfileModal');
+        let modal = new bootstrap.Modal(editProfileModal); 
+        modal.hide();
+    });
+});
+
+
+// Fungsi untuk memperbarui data profil di localStorage
+function updateProfileData(nama, bio) {
+    const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+    profileData.nama = nama;
+    profileData.bio = bio;
+
+    // Simpan kembali ke localStorage
+    localStorage.setItem('profileData', JSON.stringify(profileData));
+
+    showAhliContent();
+}
