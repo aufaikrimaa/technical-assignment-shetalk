@@ -96,17 +96,17 @@ let semuaKonten = [{
 
 let commentsData = [
     [
-        "bole-bole aja si, aku tiap haid juga minum es ga kenapa-kenapa tuh sampe sekarang",
-        "sepertinya itu mitos deh, gaada kaitannya minum es sama haid, soalnya es kalo udah diminum pun suhunya nyesuain sama suhu didalem tubuh"
+        { comment: "bole-bole aja si, aku tiap haid juga minum es ga kenapa-kenapa tuh sampe sekarang", avatar: "kurakura.jpg", nama: "pengguna umum" },
+        { comment: "sepertinya itu mitos deh, gaada kaitannya minum es sama haid, soalnya es kalo udah diminum pun suhunya nyesuain sama suhu didalem tubuh", avatar: "monyet.png", nama: "pengguna umum" }
     ],
     [
-        "owhh tenyata gitu, makasi infonyaa",
-        "wahh ilmu baruu nih!",
-        "senang sekali, informasi ini menjawab keresahanku"
+        { comment: "owhh tenyata gitu, makasi infonyaa", avatar: "anjing.jpeg", nama: "pengguna umum" },
+        { comment: "wahh ilmu baruu nih!", avatar: "monyet.png", nama: "pengguna umum" },
+        { comment: "senang sekali, informasi ini menjawab keresahanku", avatar: "kurakura.jpg", nama: "pengguna umum" }
     ],
     [
-        "nice info, thankyouu dok!",
-        "terimakasih dokter, sehat selalu!!"
+        { comment: "nice info, thankyouu dok!", avatar: "anjing.jpeg", nama: "pengguna umum" },
+        { comment: "terimakasih dokter, sehat selalu!!", avatar: "monyet.png", nama: "pengguna umum" },
     ]
 ];
 
@@ -114,7 +114,7 @@ let commentsData = [
 function tambahDiskusi(event) {
     event.preventDefault();
 
-    if (currentPage === 'index') {
+    if (currentPage === 'dashboard') {
         // close modal
         let diskusiModal = document.getElementById('diskusiBaru');
         let modal = bootstrap.Modal.getInstance(diskusiModal);
@@ -354,15 +354,36 @@ function postReply(index) {
     let replyText = replyInput.value;
 
     if (replyText.trim() !== '') {
-        // Handle posting reply (simpan komentar, kirim ke server, dll.)
-        console.log(`Reply for post ${index}: ${replyText}`);
+        // Menangani posting balasan (simpan komentar, kirim ke server, dll.)
+        console.log(`Balasan untuk post ${index}: ${replyText}`);
         
         // Menambahkan komentar ke commentsData
         if (!commentsData[index]) {
             commentsData[index] = [];
         }
-        
-        commentsData[index].unshift(replyText);
+
+        const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+        let avatar;
+        if (isAuthenticated && currentPage === 'dashboard-ahli') {
+            const profileData = JSON.parse(localStorage.getItem("profileData"));
+            avatar = profileData.photo;
+            nama = profileData.nama;
+        } else if (currentPage === 'dashboard'){
+            let randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+            avatar = randomAvatar.avatar;
+            nama = "pengguna umum";
+       
+        } else {
+            console.log('Something went wrong !')
+        }
+
+        commentsData[index].unshift({
+            avatar: avatar,
+            nama: nama,
+            comment: replyText 
+        });
+
         replyInput.value = '';
         updateCommentsView(index);
     } else {
@@ -372,43 +393,39 @@ function postReply(index) {
 }
 
 function updateCommentsView(index) {
-    const commentsList = document.getElementById(`commentsList_${index}`);
-    if (commentsList && commentsData[index] && commentsData[index].length > 0) {
-        commentsList.innerHTML = '';
-        commentsData[index].forEach(comment => {
-            const listItem = document.createElement('li');
-            listItem.textContent = comment;
-            commentsList.appendChild(listItem);
-        });
-    }
-}
-
-function updateCommentsView(index) {
 
     const commentsList = document.getElementById(`commentsList_${index}`);
 
     if (commentsList && commentsData[index] && commentsData[index].length > 0) {
         commentsList.innerHTML = '';
-        commentsData[index].forEach(comment => {
+        commentsData[index].forEach(commentObject => {
             const listItem = document.createElement('li');
             listItem.classList.add('comment-item');
 
-            // Menambahkan avatar random ke dalam elemen li
-            let randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
             const avatarElement = document.createElement('img');
-            avatarElement.src = `assets/images/${randomAvatar.avatar}`;
-            avatarElement.alt = `Avatar ${randomAvatar.nama}`;
-            avatarElement.classList.add('avatar'); 
+            avatarElement.src = `assets/images/${commentObject.avatar}`;
+            avatarElement.alt = `Avatar ${commentObject.nama}`;
+            avatarElement.classList.add('avatar');
             listItem.appendChild(avatarElement);
 
+            const userInfoContainer = document.createElement('div');
+            userInfoContainer.classList.add('user-info');
+
+            const namaElement = document.createElement('span');
+            namaElement.textContent = commentObject.nama;
+            namaElement.classList.add('nama');
+            userInfoContainer.appendChild(namaElement);
+
             const textElement = document.createElement('span');
-            textElement.textContent = comment;
-            listItem.appendChild(textElement);
+            textElement.textContent = commentObject.comment;
+            textElement.classList.add('comment-text');
+            userInfoContainer.appendChild(textElement);
+
+            listItem.appendChild(userInfoContainer);
 
             commentsList.appendChild(listItem);
         });
     }
 }
-
 
 window.onload = displayDiskusi();

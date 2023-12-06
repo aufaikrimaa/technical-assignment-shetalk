@@ -222,6 +222,30 @@ nav img {
     outline: none;
 }
 
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.avatar {
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nama {
+    margin-bottom: 0 !important;
+    font-weight: bold;
+}
+
+.comment-text {
+    margin-top: 0 !important;
+}
+
 
 .profile-header {
     background-image: url('./assets/images/header-background.svg');

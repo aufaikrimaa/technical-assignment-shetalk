@@ -225,6 +225,7 @@ function showMenu(menuId) {
     }
 }
 
+//fungsi logout
 function logout() {
     // Hapus data sesi lokal
     localStorage.removeItem('isAuthenticated');
@@ -233,7 +234,7 @@ function logout() {
     window.location.href = 'login.html'; 
 }
 
-// Fungsi untuk menampilkan modal edit profile
+//fungsi edit profile
 function showEditProfileModal() {
     const editProfileForm = document.getElementById('editProfileForm');
     const editNamaInput = document.getElementById('editNama');
@@ -263,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Perbarui data di localStorage
         updateProfileData(editedNama, editedBio);
 
-        // Sembunyikan modal
         let editProfileModal = document.getElementById('editProfileModal');
         let modal = new bootstrap.Modal(editProfileModal); 
         modal.hide();
@@ -271,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// Fungsi untuk memperbarui data profil di localStorage
 function updateProfileData(nama, bio) {
     const profileData = JSON.parse(localStorage.getItem('profileData'));
 
