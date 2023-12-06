@@ -151,6 +151,78 @@ nav img {
     font-weight: bold;
 }
 
+.reply-section {
+    display: grid !important;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem 0.5rem 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.reply-form .comments-form{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.reply-form .comments-section {
+    color: #888888;
+    
+}
+
+.reply-icon {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    color: #888888;
+    cursor: pointer;
+    gap: 1rem;
+}
+
+.reply-form ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reply-form ul img.avatar{
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.5rem;
+}
+
+.reply-form ul li{
+    display: flex;
+    margin: 1rem 0;
+}
+
+.reply-form .comments-section h6 {
+    margin-bottom: 0.5rem; 
+}
+
+.reply-form img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+}
+
+.reply-form input {
+    width: calc(100% - 20px); /* Lebar input sedikit lebih kecil dari container */
+    border: none;
+    border-bottom: 1px solid #ccc; 
+    outline: none; 
+}
+
+.reply-form .send {
+    float: right;
+    color: #888888;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
 .profile-header {
     background-image: url('./assets/images/header-background.svg');
     background-position: center;
