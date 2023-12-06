@@ -151,6 +151,25 @@ nav img {
     font-weight: bold;
 }
 
+.reply-section {
+    display: grid !important;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem 0.5rem 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.reply-form .comments-form{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.reply-form .comments-section {
+    color: #888888;
+    
+}
+
 .reply-icon {
     display: flex;
     align-items: center;
@@ -160,14 +179,24 @@ nav img {
     gap: 1rem;
 }
 
-.reply-form {
+.reply-form ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reply-form ul img.avatar{
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.5rem;
+}
+
+.reply-form ul li{
     display: flex;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    padding: 1rem 1rem 0 1rem;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.reply-form .comments-section h6 {
+    margin-bottom: 0.5rem; 
 }
 
 .reply-form img {
@@ -185,13 +214,38 @@ nav img {
 }
 
 .reply-form .send {
-    float: right; 
-    color:#888888;
+    float: right;
+    color: #888888;
     font-size: 1.5rem;
     border: none;
     cursor: pointer;
-    outline: none; 
+    outline: none;
 }
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.avatar {
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nama {
+    margin-bottom: 0 !important;
+    font-weight: bold;
+}
+
+.comment-text {
+    margin-top: 0 !important;
+}
+
 
 .profile-header {
     background-image: url('./assets/images/header-background.svg');
@@ -224,6 +278,10 @@ nav img {
 
 .profile-info p {
     margin: 0;
+}
+
+.dropdown .btn {
+    color: #888888;
 }
 
 #bio {
