@@ -196,40 +196,21 @@ function showMenu(menuId) {
     }
 }
 
-//untuk button reply di profile ahli
-let replyFormVisible = false;
-
-function toggleReplyForm() {
-    let replyForm = document.getElementById('replyForm');
-    replyFormVisible = !replyFormVisible;
-
-    if (replyFormVisible) {
-        replyForm.style.display = 'flex';
-    } else {
-        replyForm.style.display = 'none';
-    }
-}
-
-function postReply() {
-    let replyForm = document.getElementById('replyForm');
-    replyForm.style.display = 'none';
-}
-
 //for button reply
-let replyForms = document.getElementsByClassName('reply-form');
+// let replyForms = document.getElementsByClassName('reply-form');
 
-function toggleReplyForm(index) {
-    let replyForm = replyForms[index];
-    let replyFormStyle = window.getComputedStyle(replyForm);
+// function toggleReplyForm(index) {
+//     let replyForm = replyForms[index];
+//     let replyFormStyle = window.getComputedStyle(replyForm);
 
-    if (replyFormStyle.display === 'none') {
-        replyForm.style.display = 'flex';
-    } else {
-        replyForm.style.display = 'none';
-    }
-}
+//     if (replyFormStyle.display === 'none') {
+//         replyForm.style.display = 'flex';
+//     } else {
+//         replyForm.style.display = 'none';
+//     }
+// }
 
-function postReply(index) {
-    let replyForm = replyForms[index];
-    replyForm.style.display = 'none';
-}
+// function postReply(index) {
+//     let replyForm = replyForms[index];
+//     replyForm.style.display = 'none';
+// }

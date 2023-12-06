@@ -94,6 +94,23 @@ let semuaKonten = [{
     },
 ];
 
+let commentsData = [
+    [
+        "bole-bole aja si, aku tiap haid juga minum es ga kenapa-kenapa tuh sampe sekarang",
+        "sepertinya itu mitos deh, gaada kaitannya minum es sama haid, soalnya es kalo udah diminum pun suhunya nyesuain sama suhu didalem tubuh"
+    ],
+    [
+        "owhh tenyata gitu, makasi infonyaa",
+        "wahh ilmu baruu nih!",
+        "senang sekali, informasi ini menjawab keresahanku"
+    ],
+    [
+        "nice info, thankyouu dok!",
+        "terimakasih dokter, sehat selalu!!"
+    ]
+];
+
+
 function tambahDiskusi(event) {
     event.preventDefault();
 
@@ -142,6 +159,8 @@ function tambahDiskusi(event) {
             alert('Data diskusi telah ditambahkan.');
             displayDiskusi();
 
+            commentsData.unshift([]);
+
             // reset form
             document.getElementById('buatDiskusiBaru').reset();
 
@@ -158,8 +177,10 @@ function tambahDiskusi(event) {
 
             semuaKonten.unshift(diskusi);
             console.log('Data diskusi telah ditambahkan:', diskusi);
-            displayDiskusi();
             alert('Data diskusi telah ditambahkan.');
+            displayDiskusi();
+
+            commentsData.unshift([]);
 
             // reset form
             document.getElementById('buatDiskusiBaru').reset();
@@ -205,6 +226,8 @@ function tambahDiskusi(event) {
                 console.log('Data diskusi telah ditambahkan:', diskusi);
                 alert('Data diskusi telah ditambahkan.');
                 displayDiskusi();
+
+                commentsData.unshift([]);
 
                 // reset form
                 document.getElementById('buatDiskusiBaru').reset();
@@ -280,17 +303,112 @@ function displayDiskusi() {
                         ${konten.desk ? konten.desk : ``}
                     </p>
                 </div>
-                <div class="reply-icon" onclick="toggleReplyForm(0)"><span class="bi bi-chat-right-fill"></span> Balas</div>
+                <div class="reply-icon" onclick="toggleReplyForm(${index})"><span class="bi bi-chat-right-fill"></span> Balas</div>
             </div>
-            <div class="reply-form bg-white pb-3" style="display: none;">
-                <img src="assets/images/profile.png" alt="Profile Picture">
-                <input placeholder="Tulis balasan..."></input>
-                <div class="send bi bi-send-fill" onclick="postReply(0)"></div>
+            <div class="reply-form" style="display: none;">
+                <div class="reply-section bg-white pb-3" >
+                    <div class="comments-form">
+                        <img src="assets/images/profile.png" alt="Profile Picture">
+                        <input id="replyInput_${index}" placeholder="Tulis balasan..."></input>
+                        <div class="send bi bi-send-fill" onclick="postReply(${index})"></div>
+                    </div>
+                    <div class="comments-section">
+                        <h6>Balasan :</h6>
+                        <ul id="commentsList_${index}"></ul>
+                    </div>
+                </div>
             </div>
+            
         `;
+        const commentsList = document.getElementById(`commentsList_${index}`);
+        if (commentsList && commentsData[index] && commentsData[index].length > 0) {
+            commentsList.innerHTML = '';
+            commentsData[index].forEach(comment => {
+                const listItem = document.createElement('li');
+                listItem.textContent = comment;
+                commentsList.appendChild(listItem);
+            });
+        }
     });
 
     listKonten.innerHTML = diskusiHMTL;
+    
 }
+
+let replyForms = document.getElementsByClassName('reply-form');
+
+function toggleReplyForm(index) {
+    let replyForm = replyForms[index];
+    let replyFormStyle = window.getComputedStyle(replyForm);
+
+    if (replyFormStyle.display === 'none') {
+        replyForm.style.display = 'flex';
+        updateCommentsView(index);
+    } else {
+        replyForm.style.display = 'none';
+    }
+}
+
+function postReply(index) {
+    let replyInput = document.getElementById(`replyInput_${index}`);
+    let replyText = replyInput.value;
+
+    if (replyText.trim() !== '') {
+        // Handle posting reply (simpan komentar, kirim ke server, dll.)
+        console.log(`Reply for post ${index}: ${replyText}`);
+        
+        // Menambahkan komentar ke commentsData
+        if (!commentsData[index]) {
+            commentsData[index] = [];
+        }
+        
+        commentsData[index].unshift(replyText);
+        replyInput.value = '';
+        updateCommentsView(index);
+    } else {
+        console.log('Komentar tidak boleh kosong');
+        alert('Komentar tidak boleh kosong');
+    }
+}
+
+function updateCommentsView(index) {
+    const commentsList = document.getElementById(`commentsList_${index}`);
+    if (commentsList && commentsData[index] && commentsData[index].length > 0) {
+        commentsList.innerHTML = '';
+        commentsData[index].forEach(comment => {
+            const listItem = document.createElement('li');
+            listItem.textContent = comment;
+            commentsList.appendChild(listItem);
+        });
+    }
+}
+
+function updateCommentsView(index) {
+
+    const commentsList = document.getElementById(`commentsList_${index}`);
+
+    if (commentsList && commentsData[index] && commentsData[index].length > 0) {
+        commentsList.innerHTML = '';
+        commentsData[index].forEach(comment => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('comment-item');
+
+            // Menambahkan avatar random ke dalam elemen li
+            let randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+            const avatarElement = document.createElement('img');
+            avatarElement.src = `assets/images/${randomAvatar.avatar}`;
+            avatarElement.alt = `Avatar ${randomAvatar.nama}`;
+            avatarElement.classList.add('avatar'); 
+            listItem.appendChild(avatarElement);
+
+            const textElement = document.createElement('span');
+            textElement.textContent = comment;
+            listItem.appendChild(textElement);
+
+            commentsList.appendChild(listItem);
+        });
+    }
+}
+
 
 window.onload = displayDiskusi();
